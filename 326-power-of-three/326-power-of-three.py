@@ -7,7 +7,7 @@ class Solution:
             if x == 1: return True
             
             # Base case 2
-            if int(x) != x: return False
+            if x % 3 != 0 : return False
             
             # Recursive case
             return recursive_division(x/3)
