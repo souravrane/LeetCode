@@ -15,12 +15,14 @@ class Solution:
             
             # if the number of zeroes exceed k inside our window 
             # we start reducing the window to the point where only k zeroes are present.
-            if zero_count > k:
-                while zero_count > k:
-                    if nums[i] == 0:
-                        zero_count -= 1
-                    i += 1
-                
+            
+            # if zero_count > k: # redundant condition
+            
+            while zero_count > k:
+                if nums[i] == 0:
+                    zero_count -= 1
+                i += 1
+
             if zero_count <= k:
                 # now our window has k zeroes we find the distance
                 window_size = j-i+1
