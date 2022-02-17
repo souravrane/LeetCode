@@ -16,7 +16,6 @@ class Solution:
     
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         intervals = sorted(intervals, key=cmp_to_key(self.compare))
-        print(intervals)
         res = []
         n = len(intervals)
         i,j=0,0
