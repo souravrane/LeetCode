@@ -25,9 +25,9 @@ class Solution:
                 matrix[j][x] = 0
         
         '''
-        # The above solution uses T.C = O(mn) , S.C = O(m+n)
+        # The above solution uses T.C = O(mn) , S.C = O(m+n) which is the fastest
         
-        # The below solution uses T.C = O(mn) , S.C = O(1)
+        # The below solution uses T.C = O(mn) , S.C = O(1) 
         r = len(matrix)
         c = len(matrix[0])
 
