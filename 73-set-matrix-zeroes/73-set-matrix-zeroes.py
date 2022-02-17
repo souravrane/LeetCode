@@ -3,7 +3,7 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        '''
+
         row = set()
         col = set()
         
@@ -24,10 +24,10 @@ class Solution:
             for j in range(r):
                 matrix[j][x] = 0
         
-        '''
         # The above solution uses T.C = O(mn) , S.C = O(m+n) which is the fastest
         
-        # The below solution uses T.C = O(mn) , S.C = O(1) 
+        # The below solution uses T.C = O(mn) , S.C = O(1)
+        '''
         r = len(matrix)
         c = len(matrix[0])
 
@@ -50,6 +50,7 @@ class Solution:
             for j in range(r):
                 if matrix[j][i] == None:
                     matrix[j][i] = 0
+        '''
         
         
 
