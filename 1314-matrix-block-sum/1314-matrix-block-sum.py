@@ -3,17 +3,13 @@ class Solution:
         rows = len(mat)
         columns = len(mat[0])
         
-        # prefix matrix
-        pf = [[0 for i in range(columns)] for j in range(rows)]
-        
+        # prefix matrix on the input matrix
         for i in range(rows):
-            pf[i][0] = mat[i][0]
             for j in range(1,columns):
-                pf[i][j] = pf[i][j-1] + mat[i][j]
+                mat[i][j] = mat[i][j-1] + mat[i][j]
 
         
         res = [[0 for i in range(columns)] for j in range(rows)]
-        
         
         # Write down test cases and come up with logic.
         # traversal is the key here
@@ -29,9 +25,9 @@ class Solution:
                 s = 0
                 for x in range(upper_row,lower_row+1):
                     if left_col == 0:
-                        s += pf[x][right_col]
+                        s += mat[x][right_col]
                     else:
-                        s += pf[x][right_col] - pf[x][left_col-1]
+                        s += mat[x][right_col] - mat[x][left_col-1]
                 
                 res[i][j] = s
         
