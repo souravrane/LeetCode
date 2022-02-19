@@ -1,24 +1,24 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
-        prefix_max = 0
-        right_wall = height.index(max(height))
-        water = 0
+        left,right = 0,len(height)-1
+        leftMax,rightMax = 0,0
+        totalWater = 0
         
-        # water level in the left half
-        for i in range(len(height)):
-            if i == right_wall: break
-            prefix_max = max(prefix_max,height[i])
-            water += prefix_max - height[i]
-        
-        # water level in the right half
-        suffix_max = 0
-        for i in range(len(height)-1,-1,-1):
-            if i == right_wall: break
-            suffix_max = max(suffix_max,height[i])
-            water += suffix_max - height[i]
-
-        
-        return water
+        while(left<right):
+            if height[left] <= height[right]:
+                if height[left] >= leftMax:
+                    leftMax = height[left]
+                else:
+                    totalWater+=leftMax-height[left]
+                left+=1
+            else:
+                if height[right] >= rightMax:
+                    rightMax = height[right]
+                else:
+                    totalWater+=rightMax-height[right]
+                right-=1
+                
+        return totalWater
         
             
             
