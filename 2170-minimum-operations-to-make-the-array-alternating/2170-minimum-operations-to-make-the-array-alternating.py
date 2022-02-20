@@ -1,11 +1,4 @@
 from collections import defaultdict
-from functools import cmp_to_key
-import math
-
-def compare(a,b):
-    if a[1] > b[1]:
-        return -1
-    return 1
 
 class Solution:
     def minimumOperations(self, nums: List[int]) -> int:
