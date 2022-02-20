@@ -22,23 +22,38 @@ class Solution:
         
         oc = len(nums) // 2
         ec =  len(nums) - oc
-                
-        odd_items = sorted(odd.items(), key=cmp_to_key(compare))
-        even_items = sorted(even.items(), key=cmp_to_key(compare))
-
-        res = 0
-        if odd_items[0][0] == even_items[0][0]:
-            maxFreqOdd = odd_items[0][1]
-            maxFreqEven = even_items[0][1]
-            
-            secondMaxFreqOdd, secondMaxFreqEven = 0,0
-            if len(odd_items) > 1: secondMaxFreqOdd = odd_items[1][1]
-            if len(even_items) > 1: secondMaxFreqEven = even_items[1][1]
-            
-            res = len(nums) - max(maxFreqOdd + secondMaxFreqEven, maxFreqEven + secondMaxFreqOdd)
-            return res
         
-        res = len(nums) - (odd_items[0][1] + even_items[0][1])    
+        maxFreqOdd,secondMaxFreqOdd = 0,0
+        maxFreqEven,secondMaxFreqEven = 0,0
+        odd_element = 0
+        even_element = 0
+        
+        for i in odd:
+            if odd[i] > maxFreqOdd:
+                maxFreqOdd = odd[i]
+                odd_element = i
+                
+        for i in even:
+            if even[i] > maxFreqEven:
+                maxFreqEven = even[i]
+                even_element = i
+                
+        del odd[odd_element]
+        del even[even_element]
+        
+        for i in odd:
+            if odd[i] > secondMaxFreqOdd:
+                secondMaxFreqOdd = odd[i]
+                
+        for i in even:
+            if even[i] > secondMaxFreqEven:
+                secondMaxFreqEven = even[i]
+                
+        res = 0
+        if odd_element == even_element:
+            res = len(nums) - max(maxFreqOdd + secondMaxFreqEven, maxFreqEven + secondMaxFreqOdd)
+        else:
+            res = len(nums) - (maxFreqOdd + maxFreqEven)    
         return res
             
                  
