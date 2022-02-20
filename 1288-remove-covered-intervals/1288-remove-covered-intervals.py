@@ -10,7 +10,9 @@ class Solution:
         intervals = sorted(intervals, key=cmp_to_key(compare))
         left,right = intervals[0]
         count = 0
+        length = 1
         for i in range(1,len(intervals)):
+            length += 1
             curr = intervals[i]
             if curr[0] >= left and curr[1] <= right:
                 count += 1
@@ -21,7 +23,7 @@ class Solution:
                 left = curr[0]
                 right = max(right,curr[1])
             
-        return len(intervals) - count
+        return length - count
 
                 
                 
