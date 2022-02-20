@@ -8,7 +8,6 @@ def compare(a,b):
 class Solution:
     def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
         intervals = sorted(intervals, key=cmp_to_key(compare))
-        print(intervals)
         left,right = intervals[0]
         count = 0
         for i in range(1,len(intervals)):
