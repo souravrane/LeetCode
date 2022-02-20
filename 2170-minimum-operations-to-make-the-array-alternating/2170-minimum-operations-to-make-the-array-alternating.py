@@ -10,10 +10,7 @@ def compare(a,b):
 class Solution:
     def minimumOperations(self, nums: List[int]) -> int:
         if len(nums) == 1: return 0
-        if len(nums) == 2:
-            if nums[0] == nums[1]: return 1
-            else: return 0
-            
+        
         odd = defaultdict(int)
         even = defaultdict(int)
                 
@@ -29,9 +26,6 @@ class Solution:
         odd_items = sorted(odd.items(), key=cmp_to_key(compare))
         even_items = sorted(even.items(), key=cmp_to_key(compare))
 
-        print('o ',odd_items)
-        print('e ',even_items)
-        
         res = 0
         if odd_items[0][0] == even_items[0][0]:
             maxFreqOdd = odd_items[0][1]
@@ -41,11 +35,6 @@ class Solution:
             if len(odd_items) > 1: secondMaxFreqOdd = odd_items[1][1]
             if len(even_items) > 1: secondMaxFreqEven = even_items[1][1]
             
-            print("maxFreqOdd ",maxFreqOdd)
-            print("secondMaxFreqOdd ",secondMaxFreqOdd)
-            print("maxFreqEven ",maxFreqEven)
-            print("secondMaxFreqEven ",secondMaxFreqEven)
-
             res = len(nums) - max(maxFreqOdd + secondMaxFreqEven, maxFreqEven + secondMaxFreqOdd)
             return res
         
