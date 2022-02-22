@@ -1,5 +1,6 @@
 class Solution:
     
+    # given N calculate the maxium XOR value it can achieve with a b bit number
     def maximise(self,n,b):
         shift = 0
         res = 0
