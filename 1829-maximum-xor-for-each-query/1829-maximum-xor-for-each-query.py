@@ -1,7 +1,4 @@
 class Solution:
-    
-    
-        
     def getMaximumXor(self, nums: List[int], maximumBit: int) -> List[int]:        
         # calculate the prefix xor
         prefix_xor = [nums[0]]
@@ -10,7 +7,9 @@ class Solution:
                 
         res = []
         for i in range(len(nums)-1,-1,-1):
-            k = ((2**maximumBit) - 1) ^ prefix_xor[i]
+            # given N calculate a number that gives us the maxium possible xor
+            max_k = 2**maximumBit - 1
+            k = max_k ^ prefix_xor[i]
             res.append(k)
         
         return res
