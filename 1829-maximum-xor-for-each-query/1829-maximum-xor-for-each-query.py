@@ -1,14 +1,9 @@
 class Solution:
     
-    # given N calculate the maxium XOR value it can achieve with a b bit number
+    # given N calculate a number that gives us the maxium possible xor
     def maximise(self,n,b):
-        shift = 0
-        res = 0
-        while shift < b:
-            if n & (1 << shift) == 0:
-                res = res | (1 << shift)
-            shift += 1
-        return res
+        max_k = (2**b)-1
+        return n ^ max_k
         
     def getMaximumXor(self, nums: List[int], maximumBit: int) -> List[int]:        
         # calculate the prefix xor
