@@ -1,7 +1,7 @@
 class Solution:
     def removeOuterParentheses(self, s: str) -> str:
         counter = 1
-        newS = ""
+        newS = []
         i = 1
         while i < len(s):
             c = s[i]
@@ -14,8 +14,8 @@ class Solution:
                 i += 1
                 counter = 1
             else:
-                newS += c               
+                newS.append(c)               
             i+=1
            
-        return newS
+        return "".join(newS)
                     
