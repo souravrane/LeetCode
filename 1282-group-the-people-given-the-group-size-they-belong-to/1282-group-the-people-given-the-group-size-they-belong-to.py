@@ -15,4 +15,9 @@ class Solution:
                 res.append(g[j:j+group])
         
         return res
-        
+
+    '''
+    Space : O(distinc group sizes)
+    Time : O(disinct group sizes x N ) roughly this will be a small number and close to N
+    
+    '''
