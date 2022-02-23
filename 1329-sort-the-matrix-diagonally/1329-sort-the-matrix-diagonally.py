@@ -45,6 +45,13 @@ class Solution:
                 col += 1
             
         return mat
+    
+'''
+
+space : O(min(R,C))
+
+time : O(MNlog(min(R,C)))
+'''
             
             
                 
