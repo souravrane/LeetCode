@@ -7,16 +7,19 @@ class Solution:
     def getDecimalValue(self, head: ListNode) -> int:
         res = 0
         curr = head
-        x = -1
-        while curr != None:
-            x += 1
-            curr = curr.next
+        '''
+        Just like the way we construct 123 from "123". Base is 10
+        1
+        1*10 + 2
+        12*10 + 3
+        123
         
-        curr = head
+        We do the same for binary number. Base is 2
+        '''
         while curr != None:
-            res += curr.val*(2**x)
+            res = res*2
+            res += curr.val
             curr = curr.next
-            x -= 1
-        
+            
         return res
         
