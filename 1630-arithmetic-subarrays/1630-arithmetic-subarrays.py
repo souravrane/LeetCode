@@ -2,7 +2,10 @@ class Solution:
     def checkArithmeticSubarrays(self, nums: List[int], l: List[int], r: List[int]) -> List[bool]:
         res = []
         n = len(l)
-        
+        '''
+        Idea is to sort the number in the given range and then look for same common
+        difference accross the sorted array
+        '''
         for i in range(n):
             left = l[i]
             right = r[i]
