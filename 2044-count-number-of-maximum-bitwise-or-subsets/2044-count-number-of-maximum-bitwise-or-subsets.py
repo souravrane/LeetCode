@@ -1,27 +1,27 @@
-maxOR = 0
-dp = [0]
+
 
 class Solution:
+    def __init__(self):
+        self.maxOR = 0
+        self.dp = [0]
+        
     def subsetsOR(self,index,OR,arr):
         if index == len(arr):
-            if OR == maxOR: return 1
+            if OR == self.maxOR: return 1
             return 0
         
-        if dp[index][OR] != -1:
-            return dp[index][OR]
+        if self.dp[index][OR] != -1:
+            return self.dp[index][OR]
         
-        dp[index][OR] = self.subsetsOR(index+1, OR | arr[index],arr ) + self.subsetsOR(index+1, OR,arr )
-        return dp[index][OR]
+        self.dp[index][OR] = self.subsetsOR(index+1, OR | arr[index],arr ) + self.subsetsOR(index+1, OR,arr )
+        return self.dp[index][OR]
     
     def countMaxOrSubsets(self, nums: List[int]) -> int:
-        global maxOR
-        global dp
         n = len(nums)
-        maxOR = 0
         for num in nums:
-            maxOR = maxOR | num
+            self.maxOR = self.maxOR | num
         
-        dp = [[-1 for i in range(maxOR+1)] for j in range(n+1)]
+        self.dp = [[-1 for i in range(self.maxOR+1)] for j in range(n+1)]
         return self.subsetsOR(0,0,nums)
         
         
