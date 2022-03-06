@@ -7,10 +7,11 @@ class Solution:
         low = 1
         
         for i in range(1,n):
-            if num[i] < num[i-1]:
+            diff = num[i] - num[i-1]
+            if diff > 0:
                 high = low + 1
             
-            if num[i] > num[i-1]:
+            if diff < 0:
                 low = high + 1
                 
         return max(high,low)
