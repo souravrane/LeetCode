@@ -55,9 +55,7 @@ class Solution:
             stack.append(i)
             top += 1
 
-        print(NSL)
-        print(NSR)
-        
+  
         maxArea = 0
         for i in range(n):
             area = (NSR[i] - NSL[i] - 1) * heights[i]
