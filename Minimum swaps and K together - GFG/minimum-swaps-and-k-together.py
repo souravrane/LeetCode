@@ -12,9 +12,7 @@ def minSwap (arr, n, k) :
     
     maxCount = currCount
     
-    if maxCount == windowSize: return 0
-    
-    for i in range(1,max(n-windowSize + 1,2)):
+    for i in range(1,n-windowSize + 1):
         if arr[i-1] <= k:
             currCount -= 1
         
