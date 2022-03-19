@@ -1,7 +1,23 @@
 class Solution:
     def minFlips(self, s: str) -> int:
         '''
+        Flip operation : 
+            We can get the number of type 2 operations by comparing the original string with 2 different strings 
+            1. 0101...
+            2. 1010...
         
+        Remove operation : 
+            Now lets see how type 1 operation can be put to use.
+            We can remove the first element and place it at the end and then perform the FLip operation as stated above again. 
+            We keep doing this till we reach the end of the original string by doing the remove operation and keep updating the minFlips.
+            
+        We can achieve this optimally by using sliding window technique
+        our window size is original strings length, every tuime we move the window we check if the removed elements was alternating or not. If it wasnt 
+        we remove it from our initial count.
+        We perform the same check on the element that we added in the end, if that was not alternating we increment our flip count.
+        
+        We perform this and keep updating our min flips
+
         ''' 
         n = len(s)
         windowSize = n
