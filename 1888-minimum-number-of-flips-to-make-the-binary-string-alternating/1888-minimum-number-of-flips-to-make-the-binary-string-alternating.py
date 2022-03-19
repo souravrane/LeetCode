@@ -36,16 +36,14 @@ class Solution:
         newS = s + s
         n = len(newS)
         
-        toggle = 0
-        newAlternating0 = ""
-        for i in range(n):
-            newAlternating0 += str(toggle)
+        toggle = 1-int(alternating0[-1])
+        for i in range(windowSize,n):
+            alternating0 += str(toggle)
             toggle = 1 - toggle
             
-        toggle = 1
-        newAlternating1 = ""
+        toggle = 1-int(alternating1[-1])
         for i in range(n):
-            newAlternating1 += str(toggle)
+            alternating1 += str(toggle)
             toggle = 1 - toggle
             
         
@@ -53,12 +51,12 @@ class Solution:
         
         for i in range(1,windowSize):
             # for 0101 alternating
-            if newS[i-1] != newAlternating0[i-1]: currFlipsForAlt0 -= 1
-            if newS[i + windowSize-1] != newAlternating0[i + windowSize - 1]: currFlipsForAlt0 += 1
+            if newS[i-1] != alternating0[i-1]: currFlipsForAlt0 -= 1
+            if newS[i + windowSize-1] != alternating0[i + windowSize - 1]: currFlipsForAlt0 += 1
             
             # for 1010 alternating
-            if newS[i-1] != newAlternating1[i-1]: currFlipsForAlt1 -= 1
-            if newS[i + windowSize-1] != newAlternating1[i + windowSize - 1]: currFlipsForAlt1 += 1
+            if newS[i-1] != alternating1[i-1]: currFlipsForAlt1 -= 1
+            if newS[i + windowSize-1] != alternating1[i + windowSize - 1]: currFlipsForAlt1 += 1
         
             minFlips = min(currFlipsForAlt0, currFlipsForAlt1, minFlips)
         
