@@ -1,12 +1,12 @@
 class Solution:
     def reverseString(self, s: List[str]) -> None:
-        def reverse_arr(A,s,e):
-            if s>=e: return
-            A[s],A[e] = A[e],A[s]
-            reverse_arr(A,s+1,e-1)
-        
-        n = len(s)-1
-        reverse_arr(s,0,n)
-        
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        i,j = 0,len(s)-1
+        while i < j:
+            s[i],s[j] = s[j],s[i]
+            i += 1
+            j -= 1
         
         
