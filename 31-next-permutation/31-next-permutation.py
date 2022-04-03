@@ -42,10 +42,7 @@ class Solution:
             if nums[i] < nums[i+1]:
                 indexOfInterest = i
                 break
-
            
-        print(indexOfInterest)
-        
         if indexOfInterest == -1:
             self.reverseList(nums,0,n-1)
             return        
