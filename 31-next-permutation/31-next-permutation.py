@@ -36,6 +36,12 @@ class Solution:
         '''
 
         n = len(nums)
+        
+        if n == 1: return
+        if n == 2: 
+            self.reverseList(nums,0,1)
+            return
+            
         indexOfInterest = -1
         
         for i in range(n-2,-1,-1):
