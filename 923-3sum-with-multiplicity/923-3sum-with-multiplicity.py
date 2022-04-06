@@ -22,5 +22,7 @@ class Solution:
                 
                 elif i < j and j < k:
                     ans = ans + count[i]*count[j]*count[k]
+                
+                ans = ans % m
 
-        return ans % m
+        return ans
