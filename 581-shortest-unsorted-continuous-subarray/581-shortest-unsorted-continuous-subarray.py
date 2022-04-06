@@ -7,6 +7,11 @@ class Solution:
         return (num < arr[index - 1]) or (num > arr[index + 1])
     
     def findUnsortedSubarray(self, nums: List[int]) -> int:
+        '''
+        Mark the elements as sorted or unsorted
+        using the min and max from the unsorted elements find the left and right index
+        
+        '''
         minVal = float('inf')
         maxVal = float('-inf')
         
