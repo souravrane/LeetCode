@@ -1,9 +1,12 @@
 class Solution:
-    def fib(self, n: int) -> int:
-       
-        def fibonacci(x):
-            if x <= 1:
-                return x
-            return fibonacci(x-2) + fibonacci(x-1)
+    def fibonacci(self,n,s):
+        if n in s:
+            return s[n]
         
-        return fibonacci(n)
+        s[n] = self.fibonacci(n-1,s) + self.fibonacci(n-2,s)
+        return s[n]
+    
+    def fib(self, n: int) -> int:
+        return self.fibonacci(n,{0:0,1:1})    
+    
+    
