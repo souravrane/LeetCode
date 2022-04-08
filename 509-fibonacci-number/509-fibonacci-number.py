@@ -1,12 +1,9 @@
 class Solution:
-    def fibonacci(self,n,s):
-        if n in s:
-            return s[n]
+    def fib(self, n: int, memoize = {0:0,1:1}) -> int:
+        if n in memoize:
+            return memoize[n]
         
-        s[n] = self.fibonacci(n-1,s) + self.fibonacci(n-2,s)
-        return s[n]
-    
-    def fib(self, n: int) -> int:
-        return self.fibonacci(n,{0:0,1:1})    
+        memoize[n] = self.fib(n-1,memoize) + self.fib(n-2,memoize)
+        return memoize[n]   
     
     
