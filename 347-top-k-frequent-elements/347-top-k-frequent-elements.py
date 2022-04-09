@@ -15,6 +15,9 @@ class Solution:
         Once we are done with that , we can traverse from the end in the sorted fashion
         and pick out top k elements
         
+        TC : O(N)
+        SC : O(N)
+        
         '''
         n = len(nums)
         h = defaultdict(int)
