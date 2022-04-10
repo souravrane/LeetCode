@@ -2,10 +2,7 @@ class Solution:
     def calPoints(self, ops: List[str]) -> int:
         stack = []
         for char in ops:
-            if char.isnumeric() or char[0] == "-":
-                stack.append(int(char))
-                
-            elif char == "+":
+            if char == "+":
                 stack.append(stack[-1] + stack[-2]) 
                 
             elif char == "D":
@@ -13,5 +10,9 @@ class Solution:
                 
             elif char == "C":
                 stack.pop()
+            
+            else:
+                stack.append(int(char))
+
         
         return sum(stack)
