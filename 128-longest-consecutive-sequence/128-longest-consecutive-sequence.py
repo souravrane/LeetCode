@@ -1,19 +1,37 @@
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        numSet = set(nums)
         
-        longest = 0
-        for n in numSet:
-            #  we check for the left value because that marks the start of a new sequence
-            if (n - 1) not in numSet:
-                count = 0
-                # check how many consecutive numbers exist
-                while (n + count) in numSet:
-                    count += 1
-                
-                longest = max(longest,count)
+        longestSeq = 0
         
-        return longest
-                    
+        d = defaultdict(bool)
+        
+        for i in nums: d[i] = True
+        
+        for i in nums:
             
+            if d[i] == True:
+                
+                d[i] = False
+                
+                # check left range
+                left = 0
+                x = i-1
+                while d[x] == True:
+                    d[x] = False
+                    left += 1
+                    x -= 1
+                    
+                
+                # check right range
+                right = 0
+                x = i+1
+                while d[x] == True:
+                    d[x] = False
+                    right += 1
+                    x += 1
+                
+                longestSeq = max(longestSeq, left + right + 1)
+        
+        return longestSeq
+                    
             
