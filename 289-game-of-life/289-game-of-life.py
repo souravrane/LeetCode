@@ -1,5 +1,8 @@
 class Solution:    
-    '''
+    ''''
+    This mapping is important. If done wrong way, we 
+    wont get the output !
+    
     old  | new | value
      0   |  0  |   0
      1   |  0  |   1
