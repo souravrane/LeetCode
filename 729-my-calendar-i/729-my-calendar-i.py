@@ -23,18 +23,14 @@ class MyCalendar:
             if currStart >= newEnd:
                 self.calendar.insert(i,[newStart, newEnd])
                 return True
-            elif currEnd > newStart and currStart < newEnd:
+            
+            # overlapping 
+            if currEnd > newStart and currStart < newEnd:
                 return False
         
         self.calendar.append([newStart,newEnd])
         return True
             
-            
-                
-                 
-            
-            
-        return True
     
     def book(self, start: int, end: int) -> bool:
         if len(self.calendar) == 0:
