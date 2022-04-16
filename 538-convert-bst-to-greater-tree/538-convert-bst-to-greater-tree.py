@@ -10,9 +10,7 @@ class Solution:
             return sumSoFar
         
         newSum = self.newBST(root.right, sumSoFar)
-        
         root.val = root.val + newSum
-        
         return self.newBST(root.left, root.val)
         
     
