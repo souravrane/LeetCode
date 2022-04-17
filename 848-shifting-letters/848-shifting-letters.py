@@ -4,11 +4,14 @@ class Solution:
         return chr(newValue)
     
     def shiftingLetters(self, s: str, shifts: List[int]) -> str:
+        n = len(s)
+        newS = ['']*n
+        
         currShifts = 0
-        newS = ''
-        for i in range(len(s)-1,-1,-1):
+        
+        for i in range(n-1,-1,-1):
             currShifts += shifts[i]
             char = s[i]
-            newS = self.shift(char, currShifts) + newS
+            newS[i] = self.shift(char, currShifts)
         
-        return newS
+        return ''.join(newS)
