@@ -5,22 +5,22 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def inOrder(self, root):
-        if root == None:
-            return 
-        
-        self.inOrder(root.left)
-        
-        self.k -= 1
-        if self.k == 0:
-            self.ans = root.val
-            return
-        
-        self.inOrder(root.right)
-        
-        
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        self.k = k
-        self.ans = 0
-        self.inOrder(root)
-        return self.ans
+        stack = []
+        curr = root
+        
+        while curr or stack:
+            
+            # add all the root nodes and keep going left
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            
+            curr = stack.pop()
+            k -= 1
+            if k == 0:
+                return curr.val
+            
+            # go one node to right and then repeat
+            curr = curr.right
+        
