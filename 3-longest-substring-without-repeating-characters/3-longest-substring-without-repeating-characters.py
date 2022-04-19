@@ -9,16 +9,16 @@ class Solution:
         
         longest = 1
         
-        h = {}
+        visited = {}
         for end in range(n):
             char = s[end]
             
-            if char in h:
-                start = max(start, h[char] + 1)
+            if char in visited:
+                start = max(start, visited[char] + 1)
 
             longest = max(longest, end - start + 1)
                     
-            h[char] = end
+            visited[char] = end
         
         return longest
 
