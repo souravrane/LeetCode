@@ -58,8 +58,8 @@ class MyHashMap:
                     prev.next = curr.next
                     return
 
-                curr = curr.next
-                prev = prev.next        
+                prev = curr
+                curr = curr.next        
 
 
 
