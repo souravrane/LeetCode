@@ -7,7 +7,7 @@ class ListNode:
 class MyHashMap:
 
     def __init__(self):
-        self.size = 769
+        self.size = 1007
         self.arr = [None]*self.size
     
     def hashcode(self, key):
