@@ -37,9 +37,11 @@ class Solution:
                 left = mid + 1
         
         
-        leftcheck = self.binarySearch(nums[:shiftPoint],target)
-        rightcheck = self.binarySearch(nums[shiftPoint:],target)
+        if nums[shiftPoint] <= target and target <= nums[len(nums)-1]:
+            ans = self.binarySearch(nums[shiftPoint:], target)  
+            return -1 if ans == -1 else shiftPoint + ans
         
-        if leftcheck == -1 and rightcheck == -1: return -1
-        if leftcheck == -1: return shiftPoint + rightcheck
-        return leftcheck
+        return self.binarySearch(nums[:shiftPoint], target)
+            
+            
+            
