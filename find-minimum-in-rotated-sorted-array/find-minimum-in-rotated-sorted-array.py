@@ -3,18 +3,15 @@ class Solution:
         left = 0
         right = len(nums) - 1
         
-        while left < right:
+        ans = -1
+        while left <= right:
             
             mid = left + (right - left) // 2
             
-            if nums[mid] > nums[right]:
+            if nums[mid] > nums[-1]:
                 left = mid + 1
             else:
-                right = mid
-        
-        return nums[left]
-    
-    '''
-    [4,5,6,7,[0],[1],2]
-                 
-    '''
+                ans = mid
+                right = mid - 1
+                
+        return nums[ans]
