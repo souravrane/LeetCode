@@ -13,7 +13,7 @@ class Solution:
         
         if digits == "": return []
         
-        res = h[digits[0]]
+        res = list(h[digits[0]])
         
         for i in range(1, len(digits)):
             charList = h[digits[i]]
