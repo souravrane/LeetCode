@@ -5,27 +5,30 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-   
-    def deepestLeavesSum(self, root: Optional[TreeNode]) -> int:
-        h = defaultdict(int)
+    def __init__(self):
+        self.sum = 0
         
-        def helper(node, l, h):
-            if node == None:
-                return
-            
-            helper(node.left, l+1, h)
-            
-            if node.left == None and node.right == None:
-                h[l] += node.val
-                        
-            helper(node.right, l+1, h)
-            
+    def getMaxDepth(self,root, l):
+        if root == None:
+            return l
         
-        helper(root,0,h)
-        ans, level = root.val, 0
-        for key in h:
-            if key > level:
-                level = key
-                ans = h[key]
+        left = self.getMaxDepth(root.left, l+1)
+        right = self.getMaxDepth(root.right, l+1)
+        
+        return max(left,right)
+    
+    def getSum(self, root, l, maxDepth):
+        if root == None:
+            return
+        
+        if root.left == None and root.right == None and l+1 == maxDepth:
+            self.sum += root.val
+        
+        self.getSum(root.left, l+1, maxDepth)
+        self.getSum(root.right, l+1, maxDepth)
 
-        return ans
+    def deepestLeavesSum(self, root: Optional[TreeNode]) -> int:
+        maxDepth = self.getMaxDepth(root, 0)
+        self.getSum(root, 0, maxDepth)
+        return self.sum
+        
