@@ -3,7 +3,7 @@ class Solution:
         r = len(obstacleGrid)
         c = len(obstacleGrid[0])
         
-        dp = {}
+        memo = {}
         
         # recursive path calculator
         def path(i,j):
@@ -13,12 +13,12 @@ class Solution:
             if i == r or j == c or obstacleGrid[i][j] == 1:
                 return 0
             
-            if (i,j) in dp: return dp[(i,j)]
+            if (i,j) in memo: return memo[(i,j)]
             
             p1 = path(i+1,j)
             p2 = path(i,j+1)
-            dp[(i,j)] = p1+p2
+            memo[(i,j)] = p1+p2
             
-            return dp[(i,j)]
+            return memo[(i,j)]
         
         return path(0,0)
