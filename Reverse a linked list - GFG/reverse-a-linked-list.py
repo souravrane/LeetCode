@@ -1,5 +1,6 @@
 #function Template for python3
-
+import sys
+sys.setrecursionlimit(10000000)
 """
 # Node Class
 
@@ -12,21 +13,24 @@ class node:
 # 1
 # <-1<-2
 class Solution:
+    def __init__(self):
+        self.newHead = None
+        
+    def reverseLL(self, head):
+        if head.next == None:
+            self.newHead = head
+            return head
+        
+        tail = self.reverseLL(head.next)
+        tail.next = head
+        tail = tail.next
+        tail.next = None
+        return tail
+    
     #Function to reverse a linked list.
     def reverseList(self, head):
-        prev = None
-        curr = head
-        
-        while curr:
-            temp = curr.next
-            curr.next = prev
-            
-            prev = curr
-            curr = temp
-        
-        return prev
-        
-            
+        self.reverseLL(head)
+        return self.newHead
         
 
 
