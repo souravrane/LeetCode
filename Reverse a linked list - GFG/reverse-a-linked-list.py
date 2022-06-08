@@ -13,9 +13,7 @@ class node:
 # 1
 # <-1<-2
 class Solution:
-    def __init__(self):
-        self.newHead = None
-        
+
     def reverseLL(self, head):
         if head.next == None:
             self.newHead = head
@@ -29,6 +27,7 @@ class Solution:
     
     #Function to reverse a linked list.
     def reverseList(self, head):
+        self.newHead = None
         self.reverseLL(head)
         return self.newHead
         
