@@ -12,58 +12,38 @@ class Node:
 
 class Solution:
     
-    def reverse(self, head):
-        prev = None
-        cur = head
-        
-        while cur:
-            temp = cur.next
-            cur.next = prev
-            prev = cur
-            cur = temp
-        
-        return prev
-        
     def size(self, head):
         count = 0
         cur = head
-        
         while cur:
             count += 1
             cur = cur.next
-        
         return count
         
     #Function to rotate a linked list.
     def rotate(self, head, k):
-        
         length = self.size(head)
+        rotations = k % length
+        if rotations == 0: return head
         
-        if k == length: return head
-        
-        h1 = self.reverse(head)
-        i = 1
-        cur = h1
-        while i < length - k:
-            i += 1
-            cur = cur.next
-        
-        h2 = cur.next
-        cur.next = None
-    
-        h1 = self.reverse(h1)
-        
-            
-        h2 = self.reverse(h2)
-        
-        cur = h1
+        # circular ll
+        cur = head
         while cur.next:
             cur = cur.next
+        cur.next = head
         
-        cur.next = h2
+        cur = head
+        x = 0
+        while x < rotations - 1:
+            x += 1
+            cur = cur.next
+        
+        h1 = cur.next
+        cur.next = None
         return h1
-        
-        
+            
+
+
 #{ 
 #  Driver Code Starts
 # driver
