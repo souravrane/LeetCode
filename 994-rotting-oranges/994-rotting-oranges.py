@@ -14,6 +14,7 @@ class Solution:
         nextState = deque()
         oranges = 0
         
+        # O(RC)
         for i in range(rows):
             for j in range(cols):
                 if grid[i][j] == 1: oranges += 1
@@ -21,6 +22,7 @@ class Solution:
           
         if oranges == 0: return 0
         
+        # O(RC)
         days = -1
         while currentState:
             days += 1
