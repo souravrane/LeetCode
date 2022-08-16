@@ -3,24 +3,32 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        aux = []
-        i = 0
-        j = 0
-        while i < m and j < n:
-            if nums1[i] <= nums2[j]:
-                aux.append(nums1[i])
-                i += 1
+        curr = len(nums1) - 1
+        n1 = len(nums1) - n - 1
+        n2 = len(nums2) - 1
+        
+        while n1 >= 0 and n2 >= 0:
+            
+            if nums1[n1] > nums2[n2]:
+                nums1[curr] = nums1[n1]
+                nums1[n1] = 0
+                n1 -= 1
             else:
-                aux.append(nums2[j])
-                j += 1
+                nums1[curr] = nums2[n2]
+                n2 -= 1
+            
+            curr -= 1
         
-        while i < m:
-            aux.append(nums1[i])
-            i += 1
+        while n1 >= 0:
+            nums1[curr] = nums1[n1]
+            n1 -= 1
+            curr -= 1
         
-        while j < n:
-            aux.append(nums2[j])
-            j += 1
+        while n2 >= 0:
+            nums1[curr] = nums2[n2]
+            n2 -= 1
+            curr -= 1
+            
         
-        for i in range(m+n):
-            nums1[i] = aux[i]
+        
+        
