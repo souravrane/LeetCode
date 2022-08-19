@@ -1,20 +1,22 @@
 from collections import defaultdict
+
 class Solution:
     def longestPalindrome(self, s: str) -> int:
-        counter = defaultdict(int)
+        charCount = defaultdict(int)
         for char in s:
-            counter[char] += 1
+            charCount[char] += 1
         
-        ans = 0
-        oddFlag = False
-        for num in counter.values():
-            if num % 2:
-                ans += num - 1
-                oddFlag = True
+        isOdd = 0
+        palindromeLength = 0
+        for char in charCount:
+            if charCount[char] % 2:
+                palindromeLength += charCount[char] - 1
+                isOdd = 1
             else:
-                ans += num
-                
-        if oddFlag: return ans + 1
-        return ans
+                palindromeLength += charCount[char]
+        
+        return palindromeLength + isOdd
+            
+    
         
         
