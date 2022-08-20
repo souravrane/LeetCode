@@ -7,18 +7,21 @@ class Node:
 """
 
 class Solution:
-    def helper(self, root):
-        if root == None: return
-        self.result.append(root.val)
-
-        if root.children:
-            for node in root.children:
-                self.helper(node)
-
-    
     def preorder(self, root: 'Node') -> List[int]:
-        self.result = []
-        self.helper(root)
-        return self.result
+        stack = [root]
+        res = []
+        
+        while stack:
+            cur = stack.pop()
+            if cur != None:
+                
+                res.append(cur.val)
+
+                if cur.children:
+                    for i in range(len(cur.children)-1,-1,-1):
+                        stack.append(cur.children[i])
+                
+        return res
+            
         
         
