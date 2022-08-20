@@ -1,14 +1,14 @@
-from collections import defaultdict
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        h = defaultdict(int)
+        alphabets = [0]*26
         
-        for i in magazine:
-            h[i] += 1
+        for char in magazine:
+            alphabets[ord(char) - ord('a')] += 1
         
-        for j in ransomNote:
-            if j not in h or h[j] == 0: return False
-            h[j] -= 1
+        for char in ransomNote:
+            index = ord(char) - ord('a')
+            if alphabets[index] == 0: return False
+            alphabets[index] -= 1
         
         return True
         
