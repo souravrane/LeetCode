@@ -1,9 +1,10 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
         longestSub = 0
-        
-        for i in range(26):
-            searchChar = chr(ord('A') + i)
+        alpha = set()
+        for char in s: alpha.add(char)
+            
+        for searchChar in alpha:
             start = -1
             end = -1
             missMatch = 0
