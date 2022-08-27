@@ -1,32 +1,18 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        longestSub = 0
-        alpha = set()
-        for char in s: alpha.add(char)
-            
-        for searchChar in alpha:
-            start = -1
-            end = -1
-            missMatch = 0
-            
-            while end < len(s) - 1:
-                if s[end + 1] != searchChar:
-
-
-                    if missMatch < k:
-                        missMatch += 1
-
-
-                    else:
-                        start += 1
-                        while s[start] == searchChar :
-                            start += 1
-                    
-                end += 1
-                longestSub = max(longestSub, end - start)  
-                    
+        count = defaultdict(int)
+        res = 0
         
-        return longestSub
-                    
-                    
-                        
+        l = 0
+        maxf = 0
+        for r in range(len(s)):
+            char = s[r]
+            count[char] += 1
+            maxf = max(maxf, count[char])
+            
+            while (r-l+1) - maxf > k:
+                count[s[l]] -= 1
+                l += 1
+            
+            res = max(res, r-l+1)
+        return res
