@@ -8,19 +8,16 @@ class BSTIterator:
 
     def __init__(self, root: Optional[TreeNode]):
         self.stack = []
-        cur = root
-        while cur:
-            self.stack.append(cur)
-            cur = cur.left
+        self.pushIntoStack(root)
         
+    def pushIntoStack(self, node):
+        while node:
+            self.stack.append(node)
+            node = node.left
             
     def next(self) -> int:
         node = self.stack.pop()
-        temp = node.right
-        while temp:
-            self.stack.append(temp)
-            temp = temp.left
-    
+        self.pushIntoStack(node.right)
         return node.val
     
     def hasNext(self) -> bool:
