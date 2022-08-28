@@ -5,21 +5,13 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    def helper(self, leftRoot, rightRoot):
+        if leftRoot == None and rightRoot == None: return True
+        if leftRoot == None or rightRoot == None: return False
+        if leftRoot.val != rightRoot.val: return False
+
+        return self.helper(leftRoot.left, rightRoot.right) and self.helper(leftRoot.right, rightRoot.left)
     
-    def checkSymmetry(self,node1, node2):
-        if node1 == None and node2 == None:
-            return True
-        
-        if node1 == None or node2 == None: 
-            return False
-        
-        if node1.val != node2.val:
-            return False
-        
-        return self.checkSymmetry(node1.left, node2.right) & self.checkSymmetry(node1.right, node2.left)
-        
-        
-        
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        return self.checkSymmetry(root.left, root.right)
+        return self.helper(root.left, root.right)
         
