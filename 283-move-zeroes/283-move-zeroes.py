@@ -3,23 +3,19 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        i = 0
-        j = 0
+        z = 0
+        nz = 0
         
-        while j < len(nums):
-            
-            # swap condition
-            if nums[i] == 0 and nums[j] != 0:
-                nums[i],nums[j] = nums[j],nums[i]
-            
-            # when to increment i
-            if nums[i] != 0:
-                i += 1
-            
-            
-            j += 1
+        while True:
+            while nz < len(nums) and nums[nz] == 0: nz += 1
+            while z < len(nums) and nums[z] != 0: z += 1
+            if z == len(nums) or nz == len(nums): break
+            if z < nz:
+                nums[nz], nums[z] = nums[z], nums[nz]
+            else:
+                nz += 1
+                
             
                 
         
-            
         
