@@ -3,19 +3,13 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        z = 0
-        nz = 0
-        
-        while True:
-            while nz < len(nums) and nums[nz] == 0: nz += 1
-            while z < len(nums) and nums[z] != 0: z += 1
-            if z == len(nums) or nz == len(nums): break
-            if z < nz:
-                nums[nz], nums[z] = nums[z], nums[nz]
-            else:
-                nz += 1
-                
+        zero = 0
+        for nonZero in range(len(nums)):
+            if nums[zero] == 0 and nums[nonZero] != 0:
+                nums[zero] , nums[nonZero] = nums[nonZero], nums[zero]
             
-                
+            if nums[zero] != 0: zero += 1
         
+            
+            
         
