@@ -1,24 +1,19 @@
-from collections import defaultdict
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        start = 0
-        n = len(s)
+        charSet = set()
+
+        st = 0
+        ans = 0
         
-        if n == 0: return 0
-        
-        longest = 1
-        
-        visited = {}
-        for end in range(n):
-            char = s[end]
+        for e in range(len(s)):
+            char = s[e]
+            while char in charSet:
+                charSet.remove(s[st])
+                st += 1
             
-            if char in visited:
-                start = max(start, visited[char] + 1)
-
-            longest = max(longest, end - start + 1)
-                    
-            visited[char] = end
+            charSet.add(char)
+            ans = max(ans, len(charSet)) 
+               
         
-        return longest
-
+        return ans
