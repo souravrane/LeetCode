@@ -1,38 +1,21 @@
 from collections import deque
-from copy import deepcopy
 
 class Solution:
-    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+    def updateMatrix(self, matrix: List[List[int]]) -> List[List[int]]:
         visited = set()
-        level = deque([])
-        r,c = len(mat), len(mat[0])
-        
-        for i in range(r):
-            for j in range(c):
-                if mat[i][j] == 0: 
-                    level.append((i,j))
+        q = deque()
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                if matrix[i][j] == 0:
                     visited.add((i,j))
-                    
+                    q.append((i,j))
         
-        def isValid(x,y):
-            return (x >= 0 and x < r) and (y >= 0 and y < c) and (x,y) not in visited 
-        
-        dx = [-1,1,0,0]
-        dy = [0,0,-1,1]
-        
-        distance = 1
-        while level:
-            size = len(level)
-            for i in range(size):
-                x,y = level.popleft()
-                for k in range(4):
-                    newX = x + dx[k]
-                    newY = y + dy[k]
-                    if isValid(newX, newY):
-                        level.append((newX, newY))
-                        if mat[newX][newY] == 1: mat[newX][newY] = mat[x][y] + 1
-                        visited.add((newX,newY))
-            
-            distance += 1
-        
-        return mat
+        while q:
+            x,y = q.popleft()
+            for dirr in [(1,0), (-1,0), (0,1), (0,-1)]:
+                newX, newY = x+dirr[0], y+dirr[1]
+                if newX >= 0 and newX <= len(matrix)-1 and newY >= 0 and newY <= len(matrix[0])-1 and (newX, newY) not in visited:
+                        matrix[newX][newY] = matrix[x][y] + 1
+                        visited.add((newX, newY))
+                        q.append((newX, newY))
+        return matrix
