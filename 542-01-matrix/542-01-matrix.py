@@ -10,7 +10,10 @@ class Solution:
         
         for i in range(r):
             for j in range(c):
-                if mat[i][j] == 0: level.append((i,j))
+                if mat[i][j] == 0: 
+                    level.append((i,j))
+                    visited.add((i,j))
+                    
         
         def isValid(x,y):
             return (x >= 0 and x < r) and (y >= 0 and y < c) and (x,y) not in visited 
