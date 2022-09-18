@@ -3,7 +3,6 @@ from copy import deepcopy
 
 class Solution:
     def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
-        result = deepcopy(mat)
         visited = set()
         level = deque([])
         r,c = len(mat), len(mat[0])
@@ -31,9 +30,9 @@ class Solution:
                     newY = y + dy[k]
                     if isValid(newX, newY):
                         level.append((newX, newY))
-                        if mat[newX][newY] == 1: result[newX][newY] = distance
+                        if mat[newX][newY] == 1: mat[newX][newY] = mat[x][y] + 1
                         visited.add((newX,newY))
             
             distance += 1
         
-        return result
+        return mat
