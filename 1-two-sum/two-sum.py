@@ -14,3 +14,9 @@ class Solution:
             else:
                 ind[n]=i
           
+
+            
+            
+                
+        
+       
