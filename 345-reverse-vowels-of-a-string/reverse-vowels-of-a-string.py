@@ -3,7 +3,7 @@ class Solution:
         vowels = 'aeiouAEIOU'
         s = list(s)
         start, end = 0, len(s) - 1
-        while (True):
+        while (start < end):
             while start < end and s[start] not in vowels:
                 start += 1
             
@@ -14,7 +14,5 @@ class Solution:
                 s[start], s[end] = s[end], s[start]
                 start += 1
                 end -= 1
-            else:
-                break
 
         return ''.join(s)
