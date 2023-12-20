@@ -1,20 +1,19 @@
 class Solution:
     def compress(self, chars: List[str]) -> int:
-        newS = list()
-        start = 0
-        while start < len(chars):
-            c = chars[start]
-            counter = 0
-            while start < len(chars) and c == chars[start]:
-                counter += 1
-                start += 1
-
-            newS.append(c)
-            if counter > 1: newS.extend(list(str(counter)))
+        start, end = 0, 0
+        while end < len(chars):
+            c = chars[end]
+            count = 0
+            while end < len(chars) and c == chars[end]:
+                count += 1
+                end += 1
+            
+            chars[start] = c
+            start += 1
+            if count > 1:
+                for num in str(count): 
+                    chars[start] = num
+                    start += 1
         
-        while chars: chars.pop()
-        chars.extend(newS)
-        return len(chars)
-
-
-        
+        return start
+            
