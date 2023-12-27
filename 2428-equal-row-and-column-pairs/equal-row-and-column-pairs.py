@@ -1,16 +1,22 @@
+from collections import defaultdict
 class Solution:
     def equalPairs(self, grid: List[List[int]]) -> int:
         n=len(grid[0])
-        tot=0
-     
-        for row in grid:
-        
-            for j in range(n):
-                col=[grid[i][j] for i in range(n)]
+        cg=[]
+        for j in range(n):
+            col=[grid[i][j] for i in range(n)]
+            cg.append(tuple(col))
 
-                # print(row,col)
-                if row==col:
-                    tot+=1
-                    # print(row,col)
+        hash_map = defaultdict(int)
+        for row in grid:
+            hash_map[tuple(row)] += 1
+
+        tot=0
+        for col in cg:
+            if col in hash_map:
+                tot += hash_map[col]
 
         return tot
+
+
+        
