@@ -3,6 +3,5 @@ class Solution:
         stack = list()
         for char in s:
             if char == '*' and stack: stack.pop()
-            else:
-                stack.append(char)
+            else: stack.append(char)
         return ''.join(stack)        
