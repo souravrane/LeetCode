@@ -9,12 +9,14 @@ class Solution:
                 text.reverse()
                 stack.pop()
                 
-                number = list()
-                while stack and stack[-1].isnumeric():
-                    number.append(stack.pop())
+                number = 0
+                i = 0
+                while stack and stack[-1].isdigit():
+                    number += int(stack[-1]) * pow(10,i)
+                    stack.pop()
+                    i += 1
                 
-                number.reverse()
-                finalText = ''.join(text)*int(''.join(number))
+                finalText = ''.join(text) * number
                 stack.append(finalText)
             else:
                 stack.append(char)
