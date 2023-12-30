@@ -8,7 +8,6 @@ class Solution:
             else: count -= 1
 
             if count == 0:
-                majority = nums[i]
-                count = 1
+                majority = nums[i + 1]
         return majority
         
