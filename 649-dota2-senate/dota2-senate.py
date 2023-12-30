@@ -1,21 +1,22 @@
 class Solution:
     def predictPartyVictory(self, senate: str) -> str:
-        senateQ = deque(senate)
-        tempQ = deque()
-        while True:
-            senator = senateQ.popleft()
-            print(senator)
-            while senateQ and senator == senateQ[0]:
-                tempQ.append(senateQ.popleft())
-   
-            if senateQ:
-                senateQ.popleft() # evict the opponent
-                senateQ.append(senator)
-                senateQ.extendleft(tempQ)
-                tempQ.clear()
-            else:
-                return "Radiant" if senator == 'R' else "Dire"
+        radiant = deque()
+        dire = deque()
+        for index, party in enumerate(senate):
+            if party == 'R': radiant.append(index)
+            else: dire.append(index)
+        
+        n = len(senate)
+        while radiant and dire:
+            firstR = radiant.popleft()
+            firstD = dire.popleft()
             
+            if firstR < firstD:
+                radiant.append(firstR + n)
+            else:
+                dire.append(firstD + n)
+            
+        return "Radiant" if radiant else "Dire"
 
         
         
