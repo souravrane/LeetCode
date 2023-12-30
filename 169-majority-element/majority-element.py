@@ -7,7 +7,8 @@ class Solution:
             if ele == majority: count += 1
             else: count -= 1
 
-            if count == 0 and i < len(nums):
-                majority = nums[i + 1]
+            if count == 0:
+                majority = nums[i]
+                count = 1
         return majority
         
