@@ -5,14 +5,10 @@ class Solution:
         for i in range(len(flowerbed)):
             if flowerbed[i] == 0: count += 1
             else:
-                if start > -1 :
-                    result += floor((count - 1) / 2)
-                else:
-                    result += floor(count / 2)
+                result += floor((count - 1) / 2) if start > -1 else floor(count / 2)
                 count = 0
                 start = i
-        if start != -1 and count != 0: result += floor(count / 2)
-        else: result += ceil(count / 2)
+        result += floor(count / 2) if start != -1 and count != 0 else ceil(count / 2)
         return result >= n
 
                 
