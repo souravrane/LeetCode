@@ -5,14 +5,18 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def getLeafSequence(self, root, seq):
+    def getLeafSequence(self, root):
         if root.left == None and root.right == None: 
-            seq.append(root.val)
-        if root.left: self.getLeafSequence(root.left, seq)
-        if root.right: self.getLeafSequence(root.right, seq)
-        return seq
+            self.temp.append(root.val)
+        if root.left: self.getLeafSequence(root.left)
+        if root.right: self.getLeafSequence(root.right)
 
     def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
-        tree1 = self.getLeafSequence(root1, [])
-        tree2 = self.getLeafSequence(root2, [])
-        return tree1 == tree2
+        self.temp = []
+        self.getLeafSequence(root1)
+        self.tree1 = self.temp.copy()
+        self.temp.clear()
+
+        self.getLeafSequence(root2)
+        self.tree2 = self.temp.copy()
+        return self.tree1 == self.tree2
