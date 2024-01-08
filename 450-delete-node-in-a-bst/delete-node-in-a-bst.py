@@ -27,5 +27,6 @@ class Solution:
             root.right = self.deleteNode(root.right, key)
         else:
             root.left = self.deleteNode(root.left, key)
+            
         return root
         
