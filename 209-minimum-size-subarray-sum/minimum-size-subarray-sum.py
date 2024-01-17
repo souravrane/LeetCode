@@ -5,13 +5,10 @@ class Solution:
         for end in range(len(nums)):
             curSum += nums[end]
 
-            while curSum > target:
+            while curSum >= target:
                 minSize = min(minSize, end - start + 1)
                 curSum -= nums[start]
                 start += 1
-            
-            if curSum == target:
-                minSize = min(minSize, end - start + 1)
             
         return minSize if minSize <= len(nums) else 0
         
