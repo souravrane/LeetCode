@@ -5,6 +5,5 @@ class Solution:
             if nums[i] != val:
                 nums[store] = nums[i]
                 store += 1
-                
         return store
         
