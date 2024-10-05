@@ -1,17 +1,16 @@
 class Solution:
-    def helper(self, nums, index, cache):
-        if index in cache: return cache[index]
-
-        if index == len(nums) - 1: return 0
-        if index > len(nums) - 1: return len(nums) - 1
-
-        jumps = len(nums) - 1
-        for i in range(1, nums[index]+1):
-            jumps = min(jumps, 1 + self.helper(nums, index + i, cache))
-        
-        cache[index] = jumps
-        return jumps
-
     def jump(self, nums: List[int]) -> int:
-        return self.helper(nums, 0, dict())
+        hops = 0
+        start, end = 0, 0
+
+        while end < len(nums) - 1:
+            hops += 1
+            farthest = 0
+            for i in range(start, end + 1):
+                farthest = max(farthest, i + nums[i])
+            start = end + 1
+            end = farthest
+        
+        return hops
+
         
