@@ -13,15 +13,17 @@ class RandomizedSet:
     def remove(self, val: int) -> bool:
         if val not in self.cache: return False
         idx = self.cache[val]
-        self.nums[idx] = self.nums[-1]
-        self.cache[self.nums[-1]] = idx
+        lastVal = self.nums[-1]
+
+        self.nums[idx] = lastVal
+        self.cache[lastVal] = idx
+        
         del self.cache[val]
         self.nums.pop()
         return True
 
     def getRandom(self) -> int:
-        idx = random.randint(0, len(self.nums) - 1)
-        return self.nums[idx]
+        return random.choice(self.nums)
 
 # Your RandomizedSet object will be instantiated and called as such:
 # obj = RandomizedSet()
