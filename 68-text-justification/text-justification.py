@@ -9,10 +9,8 @@ class Solution:
 
             sizeSoFar += len(w)
             temp.append(w)
-            print(sizeSoFar, temp)
             
             if sizeSoFar == maxWidth or (i + 1 < len(words) and sizeSoFar + len(words[i + 1]) + 1 > maxWidth):
-                print(temp)
                 result.append(self.formatString(temp, maxWidth))
                 sizeSoFar = 0
                 temp.clear()
