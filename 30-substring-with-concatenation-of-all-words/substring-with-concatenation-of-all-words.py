@@ -5,7 +5,6 @@ class Solution:
         result = list()
         size = len(words[0])
         freq = Counter(words)
-        
 
         for i in range(size):
             left = i
