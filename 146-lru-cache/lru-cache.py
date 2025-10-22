@@ -50,13 +50,6 @@ class LRUCache:
         node.prev = left
         right.prev = node
         node.next = right
-    
-    def print_ll(self):
-        cur = self.left
-        while cur:
-            print(cur.data, end = " ")
-            cur = cur.next
-        print()
 
 
 # Your LRUCache object will be instantiated and called as such:
