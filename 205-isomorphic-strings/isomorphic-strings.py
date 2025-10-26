@@ -1,17 +1,20 @@
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
-        if len(s) != len(t): return False
+        s_map = dict()
+        t_map = dict()
 
-        charMap = defaultdict(str)
         for i in range(len(s)):
-            sc, tc = s[i], t[i]
-            if sc not in charMap: charMap[sc] = tc
-            elif charMap[sc] != tc: return False
+            left = s[i]
+            right = t[i]
 
-        charMap = defaultdict(str)
-        for i in range(len(s)):
-            sc, tc = s[i], t[i]
-            if tc not in charMap: charMap[tc] = sc
-            elif charMap[tc] != sc: return False
+            if left in s_map and s_map[left] != right: return False
+            if right in t_map and t_map[right] != left: return False
 
-        return True 
+            s_map[left] = right
+            t_map[right] = left
+        
+        return True
+
+
+
+        
