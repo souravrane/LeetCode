@@ -1,22 +1,19 @@
 class Solution:
     def wordPattern(self, pattern: str, s: str) -> bool:
-        words = s.split(" ")
-        if len(pattern) != len(words): return False
+        p_count = dict()
+        s_count = dict()
+        s_arr = s.split(' ')
 
-        charMap = defaultdict(str)
-        index = 0
-        for char in pattern:
-            if char not in charMap: charMap[char] = words[index]
-            elif charMap[char] != words[index]: return False
-            index += 1
+        if len(pattern) != len(s_arr): return False
 
-        wordMap = defaultdict(str)
-        index = 0
-        for word in words:
-            if word not in wordMap: wordMap[word] = pattern[index]
-            elif wordMap[word] != pattern[index]: return False
-            index += 1
-            
-        return True
+        for i in range(len(pattern)):
 
+            left, right = pattern[i], s_arr[i]
+
+            if left in p_count and p_count[left] != right: return False
+            if right in s_count and s_count[right] != left: return False
+
+            p_count[left] = right
+            s_count[right] = left
         
+        return True
