@@ -9,7 +9,7 @@ class Solution:
             sorted_s = ''.join(sorted(s))
             result[sorted_s].append(s)
         
-        return [x for x in result.values()]
+        return list(result.values())
 
 
         
