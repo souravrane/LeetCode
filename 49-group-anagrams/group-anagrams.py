@@ -5,11 +5,10 @@ class Solution:
         result = defaultdict(list)
 
         for i in range(len(strs)):
-            s = strs[i]
-            sorted_s = ''.join(sorted(s))
-            result[sorted_s].append(s)
+            word = strs[i]
+            count = [0] * 26
+            for k in word:
+                count[ord(k) - ord('a')] += 1
+            result[tuple(count)].append(word)
         
         return list(result.values())
-
-
-        
