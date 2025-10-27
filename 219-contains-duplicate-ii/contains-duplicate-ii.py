@@ -1,11 +1,9 @@
 class Solution:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-        indexMap = defaultdict(list)
+        seen = defaultdict(int)
         for i in range(len(nums)):
-            val = nums[i]
-            indexMap[val].append(i)
-            if len(indexMap[val]) > 1 and indexMap[val][-1] -  indexMap[val][-2] <= k: return True
+            num = nums[i]
+            if num in seen and i-seen[num] <= k: return True
+            seen[num] = i
         return False
-            
-            
         
