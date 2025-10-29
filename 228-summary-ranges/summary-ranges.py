@@ -1,18 +1,18 @@
 class Solution:
-    def formatString(self, start, end, count):
-        if count == 1: return str(start)
-        return str(start) + "->" + str(end)
-
     def summaryRanges(self, nums: List[int]) -> List[str]:
-        if not nums: return []
-        ranges = list()
-        start = nums[0]
-        count = 1
-        for i in range(1, len(nums)):
-            if nums[i]-nums[i-1] > 1:
-                ranges.append(self.formatString(start, nums[i-1], count))
-                start = nums[i]
-                count = 0
-            count += 1
-        ranges.append(self.formatString(start, nums[-1], count))
-        return ranges        
+        result = list()
+        i = 0
+        while i < len(nums):
+            start = nums[i]
+
+            while i + 1 < len(nums) and nums[i + 1] - nums[i] == 1:
+                i += 1
+            
+            if start != nums[i]:
+                result.append(f"{start}->{nums[i]}")
+            else:
+                result.append(f"{start}")
+            
+            i += 1
+            
+        return result
