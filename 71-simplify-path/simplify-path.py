@@ -1,14 +1,14 @@
 class Solution:
     def simplifyPath(self, path: str) -> str:
-        result = list()
-        directories = path.split("/")
+        unslash = path.split("/")
+        stack = list()
 
-        for p in directories:
-            if p == "." or p == '': continue
-            if p == "..": 
-                if result: result.pop()
-            else: result.append(p)
+        for symbol in unslash:
+            if symbol in ".": continue
+            elif symbol == "..": 
+                if stack: stack.pop()
+            else: stack.append(symbol)
         
-        return '/' + '/'.join(result)
-
+        return f"/{'/'.join(stack)}"
+        
         
