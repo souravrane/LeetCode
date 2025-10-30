@@ -1,14 +1,18 @@
 class Solution:
     def findMinArrowShots(self, points: List[List[int]]) -> int:
-        count = 0
+        # sorting it based on y coordinate, because thats where we will leave our arrows
         points = sorted(points, key = lambda x:x[1])
-        end = list()
-        for i in range(len(points)):
-            xs, xe = points[i]
-            if end: cs, ce = end
-            if end and ce >= xs: # update the last interval with the difference
-                end = [max(xs, cs), min(xe, ce)]
+        
+        temp = [points[0]]
+
+        for i in range(1, len(points)):
+            x1, y1 = points[i]
+            x2, y2 = temp[-1]
+
+            if y2 >= x1:
+                x2 = max(x1, x2)
+                y2 = min(y1, y2)
             else:
-                count += 1
-                end = points[i]
-        return count
+                temp.append([x1, y1])
+        
+        return len(temp)
