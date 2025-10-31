@@ -1,23 +1,30 @@
 class Solution:
-    def calculate(self, op1, op2, operation):
-        match operation:
-            case "*":
-                return op1 * op2
-            case "/":
-                return int(op1 / op2)
-            case "+":
-                return op1 + op2
-            case "-":
-                return op1 - op2
-        return 0
+    def add(self, a, b): return a + b
+
+    def subtract(self, a, b): return a - b
+
+    def multiply(self, a, b): return a * b
+
+    def divide(self, a, b): return int(a / b)
+
+    def operate(self, operand, a, b):
+        expression = {
+            "+": self.add,
+            "-": self.subtract,
+            "*": self.multiply,
+            "/": self.divide
+        }
+        return expression[operand](a, b)
 
     def evalRPN(self, tokens: List[str]) -> int:
-        result = list()
+        stack = list()
+        result = 0
         for token in tokens:
-            if token not in "+-*/":
-                result.append(int(token))
+            if token in "+-/*":
+                num2, num1 = stack.pop(), stack.pop()
+                result = self.operate(token, num1, num2)
+                stack.append(result)
             else:
-                op2 = result.pop()
-                op1 = result.pop()
-                result.append(self.calculate(op1, op2, token))
-        return result[-1]
+                stack.append(int(token))
+
+        return stack[-1]      
