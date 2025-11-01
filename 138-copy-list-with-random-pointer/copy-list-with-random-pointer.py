@@ -8,47 +8,19 @@ class Node:
 """
 
 class Solution:
+    def __init__(self):
+        self.visited = dict()
+
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        result = Node(-1)
-        r = result
-        h = head
+        if not head: return None
+
+        if head in self.visited:
+            return self.visited[head]
         
-        og_order = dict() # addr - pos
+        clone = Node(head.val)
+        self.visited[head] = clone
 
-        og_map = dict()
-        new_map = dict() # pos - addr
+        clone.next = self.copyRandomList(head.next)
+        clone.random = self.copyRandomList(head.random)
 
-        # List is cloned
-        order = 1
-        while h:
-            r.next = Node(h.val)
-            og_order[h] = order
-            new_map[order] = r.next
-
-            order += 1
-            h = h.next
-            r = r.next
-        
-        og_order[None] = -1
-        new_map[-1] = None
-        # random pointer order determined
-        h = head
-        while h:
-            random_pos = og_order[h.random]
-            og_map[h] = random_pos
-            h = h.next
-
-        # random pointer mapping
-        r = result.next
-        h = head
-        while h:
-            pos_to_point = og_map[h]
-            node_at_pos = new_map[pos_to_point]
-            r.random = node_at_pos
-            h = h.next
-            r = r.next
-        
-        return result.next
-
-        
-
+        return clone
