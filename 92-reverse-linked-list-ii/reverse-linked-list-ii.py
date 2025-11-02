@@ -5,9 +5,12 @@
 #         self.next = next
 class Solution:
     def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        dummy = ListNode(-1)
+        dummy.next = head
+
         # get the start position
-        position = 1
-        cur, start_connection = head, head
+        position = 0
+        cur, start_connection = dummy, dummy
         while position < left:
             start_connection = cur
             cur = cur.next
@@ -26,5 +29,4 @@ class Solution:
         start_connection.next = prev
         tail.next = end_connection
         
-        if left > 1: return head
-        return prev
+        return dummy.next
