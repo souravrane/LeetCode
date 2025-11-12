@@ -1,23 +1,31 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def helper(self, pre, i, j, ino, x, y):
-        if i > j: return None
+    def get_idx_in_inorder(self, val):
+        return self.inorder_map[val]
 
-        # create the root
-        root = TreeNode(pre[i])
+    def helper(self, preorder, ps, pe, inorder, ins, ine):
+        if ps > pe: return None
         
-        # find the root rootIdx
-        rootIdx = self.inMap[pre[i]]
+        root = TreeNode(preorder[ps])
+        
+        i = self.get_idx_in_inorder(root.val)
 
-        # create left and right subtrees
-        left = self.helper(pre, i + 1, i + (rootIdx - x), ino, x, rootIdx - 1)
-        right = self.helper(pre, i + (rootIdx - x) + 1, j, ino, rootIdx + 1, y)
+        lst = self.helper(preorder, ps + 1, ps + (i - ins), inorder, ins, i - 1)
+        rst = self.helper(preorder, ps + (i - ins) + 1, pe, inorder, i + 1, ine)
 
-        root.left = left
-        root.right = right
+        root.left = lst
+        root.right = rst
         return root
 
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        n = len(preorder)
-        self.inMap = dict()
-        for idx,num in enumerate(inorder): self.inMap[num] = idx
-        return self.helper(preorder, 0, n-1, inorder, 0, n-1)
+        size = len(preorder)
+        self.inorder_map = dict()
+        for idx, val in enumerate(inorder): self.inorder_map[val] = idx
+        return self.helper(preorder, 0, size - 1, inorder, 0, size - 1)
+
+        
