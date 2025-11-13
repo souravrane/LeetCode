@@ -5,25 +5,24 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def construct(self, pos, i, j, ino, x, y):
+    def helper(self, postorder, i, j, inorder, x, y):
         if i > j: return None
 
-        #create the root
-        root = TreeNode(pos[j])
+        root = postorder[j]
+        root_node = TreeNode(root)
+        
+        idx = self.inorder_idx[root]
+        lst = self.helper(postorder, i, j-(y-idx)-1, inorder, x, idx-1)
+        rst = self.helper(postorder, j-(y-idx), j-1, inorder, idx+1, y)
 
-        # find root in ino
-        idx = self.inorderMap[pos[j]]
-
-        # create lst and rst
-        left = self.construct(pos, i, j-(y-idx)-1, ino, x, idx-1)
-        right = self.construct(pos, j-(y-idx), j-1, ino, idx+1, y) 
-
-        root.left = left
-        root.right = right
-        return root
+        root_node.left = lst
+        root_node.right = rst
+        return root_node
 
     def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
-        n = len(inorder)
-        self.inorderMap = dict()
-        for i,num in enumerate(inorder): self.inorderMap[num] = i
-        return self.construct(postorder, 0, n-1, inorder, 0, n-1)
+        self.inorder_idx = dict()
+        size = len(postorder)
+        for k,v in enumerate(inorder):
+            self.inorder_idx[v] = k
+        return self.helper(postorder, 0, size-1, inorder, 0, size-1)
+        
