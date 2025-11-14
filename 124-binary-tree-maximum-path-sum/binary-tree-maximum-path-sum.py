@@ -14,7 +14,7 @@ class Solution:
         right_max_sum = max(right_max_sum, 0)
         self.maxSum = max(self.maxSum , root.val + left_max_sum + right_max_sum)
 
-        return max(root.val + left_max_sum, root.val + right_max_sum)
+        return root.val + max(left_max_sum, right_max_sum)
 
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         self.maxSum = float('-inf')
