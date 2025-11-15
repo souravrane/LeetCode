@@ -5,6 +5,8 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    # TC : logn * logn
+    # SC : logn
     def countNodes(self, root: Optional[TreeNode]) -> int:
         lst = self.get_left_level(root)
         rst = self.get_right_level(root)
